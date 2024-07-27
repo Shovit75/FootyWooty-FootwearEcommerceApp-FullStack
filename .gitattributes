@@ -3,3 +3,6 @@
 
 # Treat .blade.php files as PHP
 *.blade.php linguist-language=PHP
+
+# Ignore CSS files for language statistics
+*.css linguist-vendored
