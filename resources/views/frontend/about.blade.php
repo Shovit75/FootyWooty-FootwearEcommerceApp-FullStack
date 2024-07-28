@@ -14,7 +14,7 @@
 				<div class="row row-pb-lg">
 					<div class="col-sm-6 mb-3">
 						<div class="video colorlib-video" style="background-image: url(images/foot.jpg);">
-							<a href="https://github.com/Shovit75/FootyWooty"><i class="icon-play3"></i></a>
+							<a href="#"><i class="icon-play3"></i></a>
 							<div class="overlay"></div>
 						</div>
 					</div>

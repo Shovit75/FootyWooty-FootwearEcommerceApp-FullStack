@@ -55,7 +55,7 @@
                     <li>Bettadasanapur, 560100 <br>Bengaluru, Karnataka</li>
                     <li>+ 9876 543 210</li>
                     <li>info@footywooty.com</li>
-                    <li>Mobile App : <a href="https://github.com/Shovit75/FootyWooty">
+                    <li>Mobile App : <a href="#">
                         <span style="color: black">
                             FootyWooty
                         </span>
@@ -67,7 +67,7 @@
         <div class="text-center pb-2">
         <p>
             <span>
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> | <a href="https://github.com/Shovit75/FootyWooty"> Website Modified by Shovit</a>
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> | Website Modified by Shovit
             </span>
         </p>
     </div>
