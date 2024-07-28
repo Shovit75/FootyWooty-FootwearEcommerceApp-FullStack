@@ -58,10 +58,16 @@
         <form action="{{route('productsubcat.store')}}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
+            @error('name')
+              <div class="text-danger">{{ $message }}</div>
+            @enderror
             <label for="name">Name of the Product Sub-Category</label>
-            <input type="text" class="form-control" name="name" placeholder="Enter Name" required>
+            <input type="text" class="form-control" name="name" placeholder="Enter Name">
           </div>
           <div class="form-group">
+            @error('product_categories_id')
+              <div class="text-danger">{{ $message }}</div>
+            @enderror
             <label for="quantity">Select Product Category</label>
             <select name="product_categories_id" id="select" class="form-control">
                 @foreach ($prodcat as $p)
@@ -70,8 +76,11 @@
             </select>
           </div>
           <div>
+            @error('image')
+              <div class="text-danger">{{ $message }}</div>
+            @enderror
             <label for="image">Image of the Product Sub-Category</label><br>
-            <input type="file" name="image" id="image" required>
+            <input type="file" name="image" id="image">
           </div><br>
           <button type="submit" class="btn btn-primary">Create Product Sub-Category</button>
         </form>

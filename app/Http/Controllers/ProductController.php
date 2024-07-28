@@ -21,6 +21,18 @@ class ProductController extends Controller
     }
 
     public function store(Request $request){
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'description' => 'required|string',
+            'quantity' => 'required|min:1',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'color' => 'required|array',
+            'size' => 'required|array',
+            'status' => 'required|boolean',
+            'categories' => 'required', 
+            'subcategories' => 'required', 
+        ]);
         $products = new Product;
         $products -> name = $request['name'];
         $products -> price = $request['price'];
@@ -48,6 +60,18 @@ class ProductController extends Controller
     }
 
     public function update(Request $request, $id){
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'description' => 'required|string',
+            'quantity' => 'required|min:1',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image file
+            'color' => 'required|array',
+            'size' => 'required|array',
+            'status' => 'required|boolean',
+            'categories' => 'required', 
+            'subcategories' => 'required', 
+        ]);
         $products = Product::find($id);
         $products -> name = $request['name'];
         $products -> price = $request['price'];

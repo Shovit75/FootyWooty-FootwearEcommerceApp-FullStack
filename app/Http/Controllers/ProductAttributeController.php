@@ -13,6 +13,9 @@ class ProductAttributeController extends Controller
     }
 
     public function store(Request $request){
+        $request->validate([
+            'name' => 'required',
+        ]);
         $prodattr = new ProductAttribute;
         $prodattr -> name = $request['name'];
         $prodattr -> options = json_encode($request['option']);
@@ -26,6 +29,9 @@ class ProductAttributeController extends Controller
     }
 
     public function update(Request $request, $id){
+        $request->validate([
+            'name' => 'required',
+        ]);
         $prodattr = ProductAttribute::find($id);
         $prodattr -> name = $request['name'];
         $prodattr -> options = json_encode($request['option']);

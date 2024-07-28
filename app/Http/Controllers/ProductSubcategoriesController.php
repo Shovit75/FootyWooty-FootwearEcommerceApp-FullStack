@@ -17,6 +17,11 @@ class ProductSubcategoriesController extends Controller
     }
 
     public function store(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'product_categories_id' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
         $prodsubcat = new ProductSubcategories;
         $prodsubcat -> name = $request['name'];
         $prodsubcat -> product_categories_id = $request['product_categories_id'];
@@ -33,6 +38,11 @@ class ProductSubcategoriesController extends Controller
     }
 
     public function update(Request $request, $id){
+        $request->validate([
+            'name' => 'required',
+            'product_categories_id' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
         $prodsubcat = ProductSubcategories::find($id);
         $prodsubcat -> name = $request['name'];
         $prodsubcat -> product_categories_id = $request['product_categories_id'];

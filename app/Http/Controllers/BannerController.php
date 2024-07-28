@@ -14,6 +14,14 @@ class BannerController extends Controller
     }
 
     public function store(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'headline' => 'required',
+            'headline2' => 'required',
+            'headline3' => 'required',
+            'link' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
         $banner = new Banner;
         $banner -> name = $request['name'];
         $banner -> headline = $request['headline'];
@@ -32,6 +40,14 @@ class BannerController extends Controller
     }
 
     public function update(Request $request, $id){
+        $request->validate([
+            'name' => 'required',
+            'headline' => 'required',
+            'headline2' => 'required',
+            'headline3' => 'required',
+            'link' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
         $banner = Banner::find($id);
         $banner -> name = $request['name'];
         $banner -> headline = $request['headline'];

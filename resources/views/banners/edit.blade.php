@@ -7,12 +7,22 @@
         <h4 class="card-title">Edit Banner</h4>
       </div>
       <div class="card-body">
+      @if ($errors->any())
+          <div class="alert alert-danger">
+            <p>Errors:</p>
+              <ol>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ol>
+          </div>
+      @endif
         <div class="card">
               <form action="{{url('banner/update/'.$banner->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                   <label for="name">Name of the Banner</label>
-                  <input type="text" class="form-control" value="{{$banner->name}}" name="name" placeholder="Enter Name" required>
+                  <input type="text" class="form-control" value="{{$banner->name}}" name="name" placeholder="Enter Name">
                 </div>
                 <div class="form-group">
                     <label for="headline">Headline 1 (Topmost)</label>
@@ -29,7 +39,7 @@
                   <div class="form-row">
                   <div class="form-group col-md-4">
                     <label for="link">Link</label>
-                    <input type="text" class="form-control" name="link" value="{{$banner->link}}" placeholder="Enter Link" required>
+                    <input type="text" class="form-control" name="link" value="{{$banner->link}}" placeholder="Enter Link">
                   </div>
                   <div class="col-md-8">
                     <label for="image">Image of the Banner</label><br>

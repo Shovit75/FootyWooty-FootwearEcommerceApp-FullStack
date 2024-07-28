@@ -14,6 +14,10 @@ class TrustedpartnersController extends Controller
     }
 
     public function store(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
         $trusted = new TrustedPartners;
         $trusted -> name = $request['name'];
         $imagepath = $request['image']->store('trusted','public');
@@ -28,6 +32,10 @@ class TrustedpartnersController extends Controller
     }
 
     public function update(Request $request, $id){
+        $request->validate([
+            'name' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
         $trusted = TrustedPartners::find($id);
         $trusted -> name = $request['name'];
         if($request['image']){

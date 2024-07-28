@@ -71,26 +71,41 @@
         <form action="{{route('product.store')}}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
+            @error('name')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
             <label for="name">Name of the Product</label>
-            <input type="text" class="form-control" name="name" placeholder="Enter Name" required>
+            <input type="text" class="form-control" name="name" placeholder="Enter Name">
           </div>
           <div class="form-group">
+            @error('description')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
             <label for="description">Description of the Product</label>
-            <textarea class="form-control" name="description" placeholder="Enter Description" cols="5" rows="5" required></textarea>
+            <textarea class="form-control" name="description" placeholder="Enter Description" cols="5" rows="5"></textarea>
           </div>
           <div class="form-row">
           <div class="col-md-6 form-group">
+            @error('price')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
             <label for="price">Price of the Product</label>
-            <input type="number" class="form-control" name="price" placeholder="Enter Price" required>
+            <input type="number" class="form-control" name="price" placeholder="Enter Price">
           </div>
           <div class="col-md-6 form-group">
+            @error('quantity')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
             <label for="quantity">Quantity of the Product</label>
-            <input type="number" class="form-control" name="quantity" placeholder="Enter Quantity" required>
+            <input type="number" class="form-control" name="quantity" placeholder="Enter Quantity">
           </div>
           </div>
           <div class="form-group">
+            @error('size')
+              <div class="text-danger">{{ $message }}</div>
+            @enderror
             <label for="size">Select Multiple Product Sizes</label>
-            <select name="size[]" class="form-control selectpicker" multiple required>
+            <select name="size[]" class="form-control selectpicker" multiple>
                 @foreach ($prodattr as $attribute)
                 @if($attribute->name=="Size"){
                         @foreach (json_decode($attribute->options) as $option)
@@ -102,8 +117,11 @@
             </select>
           </div>
           <div class="form-group">
+            @error('color')
+              <div class="text-danger">{{ $message }}</div>
+            @enderror
             <label for="color">Select Multiple Product Colours</label>
-            <select name="color[]" class="form-control selectpicker" multiple required>
+            <select name="color[]" class="form-control selectpicker" multiple>
                 @foreach ($prodattr as $attribute)
                     @if($attribute->name=="Color"){
                             @foreach (json_decode($attribute->options) as $option)
@@ -115,6 +133,9 @@
             </select>
           </div>
           <div class="form-group">
+            @error('categories')
+              <div class="text-danger">{{ $message }}</div>
+            @enderror
             <label for="quantity">Select Product Category</label>
             <select name="categories" class="form-control">
                 @foreach ($prodcat as $p)
@@ -123,6 +144,9 @@
             </select>
           </div>
           <div class="form-group">
+            @error('subcategories')
+              <div class="text-danger">{{ $message }}</div>
+            @enderror
             <label for="quantity">Select Product Sub-Category</label>
             <select name="subcategories" class="form-control">
                 @foreach ($prodsubcat as $p)
@@ -131,6 +155,9 @@
             </select>
           </div>
           <div class="form-group">
+            @error('status')
+              <div class="text-danger">{{ $message }}</div>
+            @enderror
             <label for="status">Status</label>
             <select name="status" class="form-control">
                 <option name="status" value="0">InActive</option>
@@ -138,8 +165,11 @@
             </select>
           </div>
           <div>
+            @error('image')
+              <div class="text-danger">{{ $message }}</div>
+            @enderror
             <label for="image">Image of the Product</label><br>
-            <input type="file" name="image" id="image" required>
+            <input type="file" name="image" id="image">
           </div><br>
           <button type="submit" class="btn btn-primary">Create Product</button>
         </form>

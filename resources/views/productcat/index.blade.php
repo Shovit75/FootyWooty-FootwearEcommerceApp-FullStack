@@ -58,12 +58,18 @@
         <form action="{{route('productcat.store')}}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
+            @error('name')
+              <div class="text-danger">{{ $message }}</div>
+            @enderror
             <label for="name">Name of the Product Category</label>
-            <input type="text" class="form-control" name="name" placeholder="Enter Name" required>
+            <input type="text" class="form-control" name="name" placeholder="Enter Name">
           </div>
           <div>
+            @error('image')
+              <div class="text-danger">{{ $message }}</div>
+            @enderror
             <label for="image">Image of the Product Category</label><br>
-            <input type="file" name="image" id="image" required><br><br>
+            <input type="file" name="image" id="image"><br><br>
           </div>
           <button type="submit" class="btn btn-primary">Create Product Category</button>
         </form>

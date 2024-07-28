@@ -62,29 +62,47 @@
         <form action="{{route('banner.store')}}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
+            @error('name')
+            <div class="text-danger">{{$message}}</div>
+            @enderror
             <label for="name">Name of the Banner</label>
-            <input type="text" class="form-control" name="name" placeholder="Enter Name" required>
+            <input type="text" class="form-control" name="name" placeholder="Enter Name">
           </div>
           <div class="form-group">
+            @error('headline')
+            <div class="text-danger">{{$message}}</div>
+            @enderror
             <label for="headline">Headline 1 (Topmost)</label>
             <textarea class="form-control" name="headline" id="" cols="30" rows="10"></textarea>
           </div>
           <div class="form-group">
+            @error('headline2')
+            <div class="text-danger">{{$message}}</div>
+            @enderror
             <label for="headline2">Headline 2 (Middle)</label>
             <textarea name="headline2" class="form-control" id="" cols="30" rows="10"></textarea>
           </div>
           <div class="form-group">
+            @error('headline3')
+            <div class="text-danger">{{$message}}</div>
+            @enderror
             <label for="headline3">Headline 2 (Last)</label>
             <textarea name="headline3" class="form-control" id="" cols="30" rows="10"></textarea>
           </div>
           <div class="form-row">
           <div class="form-group col-md-4">
+            @error('link')
+            <div class="text-danger">{{$message}}</div>
+            @enderror
             <label for="link">Link</label>
-            <input type="text" class="form-control" name="link" placeholder="Enter Link" required>
+            <input type="text" class="form-control" name="link" placeholder="Enter Link">
           </div>
           <div class="col-md-8">
+            @error('image')
+            <div class="text-danger">{{$message}}</div>
+            @enderror
             <label for="image">Image of the Banner</label><br>
-            <input type="file" name="image" id="image" required>
+            <input type="file" name="image" id="image">
           </div>
         </div>
           <button type="submit" class="btn btn-primary">Create Banner</button>

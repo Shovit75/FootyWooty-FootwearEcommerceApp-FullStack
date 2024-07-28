@@ -14,6 +14,10 @@ class WebuserController extends Controller
     }
 
     public function store(Request $request){
+        $request->validate([
+            'name' => 'required|string|max:255|unique:webusers,name',
+            'password' => 'required|string|min:8',
+        ]);
         $webuser = new Webuser;
         $webuser -> name = $request['name'];
         $webuser -> password = Hash::make($request['password']);
@@ -27,6 +31,10 @@ class WebuserController extends Controller
     }
 
     public function update(Request $request, $id){
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'password' => 'required|string|min:8',
+        ]);
         $webuser = Webuser::find($id);
         $webuser -> name = $request['name'];
         $webuser -> password = Hash::make($request['password']);

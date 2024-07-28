@@ -70,18 +70,38 @@
             <form action="{{route('user.store')}}" method="POST">
               @csrf
               <div class="form-group">
+                @error('name')
+                <div class="text-danger">
+                    {{$message}}
+                </div>
+                @enderror
                 <label for="name">Name of the User</label>
-                <input type="text" class="form-control" name="name" placeholder="Enter Name" required>
+                <input type="text" class="form-control" name="name" placeholder="Enter Name">
               </div>
               <div class="form-group">
+                @error('email')
+                <div class="text-danger">
+                    {{$message}}
+                </div>
+                @enderror
                 <label for="description">Email of the User</label>
-                <input type="email" class="form-control" name="email" placeholder="Enter Email" required>
+                <input type="email" class="form-control" name="email" placeholder="Enter Email">
               </div>
               <div class="form-group">
+                @error('password')
+                <div class="text-danger">
+                    {{$message}}
+                </div>
+                @enderror
                 <label for="password">Password of the User</label>
-                <input type="password" class="form-control" name="password" placeholder="Enter Password" required>
+                <input type="password" class="form-control" name="password" placeholder="Enter Password">
               </div>
               <div class="form-group">
+                @error('roles')
+                <div class="text-danger">
+                    {{$message}}
+                </div>
+                @enderror
                 <label for="roles">Role assigned for the User</label><br>
                 <select name="roles" id="my-dropdown" class="form-control" aria-label="Default select example">
                     @foreach ($roles as $p)

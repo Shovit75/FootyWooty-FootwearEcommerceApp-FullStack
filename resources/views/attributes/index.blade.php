@@ -55,8 +55,11 @@
         <form action="{{route('attribute.store')}}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
+              @error('name')
+                <div class="text-danger">{{$message}}</div>
+              @enderror
             <label for="name">Name of the Attribute</label>
-            <input type="text" class="form-control" name="name" placeholder="Enter Name" required>
+            <input type="text" class="form-control" name="name" placeholder="Enter Name">
           </div>
           <div class="form-group">
             <label for="option">Options of the Attribute / Minimum 2 (Two) Required</label>

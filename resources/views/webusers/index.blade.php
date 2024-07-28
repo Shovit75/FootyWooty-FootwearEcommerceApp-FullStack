@@ -49,12 +49,22 @@
         <form action="{{route('webuser.store')}}" method="POST">
           @csrf
           <div class="form-group">
+            @error('name')
+            <div class="text-danger">
+              {{$message}}
+            </div>
+            @enderror
             <label for="name">Name of the Webuser</label>
-            <input type="text" class="form-control" name="name" placeholder="Enter Name" required>
+            <input type="text" class="form-control" name="name" placeholder="Enter Name">
           </div>
           <div class="form-group">
+            @error('password')
+            <div class="text-danger">
+              {{$message}}
+            </div>
+            @enderror
             <label for="password">Password of the Webuser</label>
-            <input type="password" class="form-control" name="password" placeholder="Enter Password" required>
+            <input type="password" class="form-control" name="password" placeholder="Enter Password">
           </div>
           <button type="submit" class="btn btn-primary">Create Webuser</button>
         </form>

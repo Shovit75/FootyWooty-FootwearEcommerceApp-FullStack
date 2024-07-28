@@ -15,6 +15,10 @@ class ProductCategoriesController extends Controller
     }
 
     public function store(Request $request){
+        $request->validate([
+                'name' => 'required',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image file
+            ]);
         $prodcat = new ProductCategories;
         $prodcat -> name = $request['name'];
         $imagepath = $request['image']->store('prodcat','public');
@@ -29,6 +33,10 @@ class ProductCategoriesController extends Controller
     }
 
     public function update(Request $request, $id){
+        $request->validate([
+            'name' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
         $prodcat = ProductCategories::find($id);
         $prodcat -> name = $request['name'];
         if($request['image'])
