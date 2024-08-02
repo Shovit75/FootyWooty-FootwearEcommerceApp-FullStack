@@ -35,7 +35,6 @@ class UsersTableSeeder extends Seeder
         // Define roles to be created
         $rolenames = [
             'Superadmin',
-            'Product_Manager',
         ];
 
         // Create roles and attach permissions

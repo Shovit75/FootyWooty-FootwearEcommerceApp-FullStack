@@ -43,11 +43,6 @@ Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->
 Route::post('/dbseed', 'App\Http\Controllers\SeederController@dbseed')->name('dbseed');
 
 Route::group(['middleware' => 'auth'], function () {
-    //Admin user Navigations
-	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
-    Route::get('/users/delete/{id}',[UserController::class,'deleteUser'])->name('user.delete');
-    Route::get('/users/edit/{id}',[UserController::class,'edit'])->name('users.edit');
-    Route::post('/users/update/{id}',[UserController::class,'update'])->name('users.update');
 
     //Admin Profile Navigations
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
@@ -78,17 +73,25 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/productsubcat/delete/{id}',[ProductSubcategoriesController::class,'delete'])->name('productsubcat.delete');
     Route::get('/productsubcat/productsubcatshow/{id}',[ProductSubcategoriesController::class,'prodsubcatshow'])->name('productsubcat.prodcatshow');
 
-    //User Roles and Permissions
-    Route::get('/user/permissions',[PermissionController::class,'index'])->name('permission.index');
-    Route::post('/user/permissions',[PermissionController::class,'store'])->name('permission.store');
-    Route::get('/user/permissions/edit/{id}',[PermissionController::class,'edit'])->name('permission.edit');
-    Route::post('/user/permissions/update/{id}',[PermissionController::class,'update'])->name('permission.update');
-    Route::get('/user/permissions/delete/{id}',[PermissionController::class,'delete'])->name('permission.delete');
-    Route::get('/user/roles',[RoleController::class,'index'])->name('role.index');
-    Route::post('/user/roles',[RoleController::class,'store'])->name('role.store');
-    Route::get('/user/roles/edit/{id}',[RoleController::class,'edit'])->name('role.edit');
-    Route::post('/user/roles/update/{id}',[RoleController::class,'update'])->name('role.update');
-    Route::get('/user/roles/delete/{id}',[RoleController::class,'delete'])->name('role.delete');
+    Route::group(['middleware' => ['role:Superadmin']], function () {
+         //User Roles and Permissions
+        Route::get('/user/permissions',[PermissionController::class,'index'])->name('permission.index');
+        Route::post('/user/permissions',[PermissionController::class,'store'])->name('permission.store');
+        Route::get('/user/permissions/edit/{id}',[PermissionController::class,'edit'])->name('permission.edit');
+        Route::post('/user/permissions/update/{id}',[PermissionController::class,'update'])->name('permission.update');
+        Route::get('/user/permissions/delete/{id}',[PermissionController::class,'delete'])->name('permission.delete');
+        Route::get('/user/roles',[RoleController::class,'index'])->name('role.index');
+        Route::post('/user/roles',[RoleController::class,'store'])->name('role.store');
+        Route::get('/user/roles/edit/{id}',[RoleController::class,'edit'])->name('role.edit');
+        Route::post('/user/roles/update/{id}',[RoleController::class,'update'])->name('role.update');
+        Route::get('/user/roles/delete/{id}',[RoleController::class,'delete'])->name('role.delete');
+
+        //Admin user Navigations
+        Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
+        Route::get('/users/delete/{id}',[UserController::class,'deleteUser'])->name('user.delete');
+        Route::get('/users/edit/{id}',[UserController::class,'edit'])->name('users.edit');
+        Route::post('/users/update/{id}',[UserController::class,'update'])->name('users.update');
+    });
 
     //For Checkout Backend
     Route::get('checkoutb', [CheckoutController::class, 'checkoutb'])->name('checkoutb.index');

@@ -1,6 +1,5 @@
 <div class="sidebar">
     <div class="sidebar-wrapper">
-    @can('Product_navigations')
         <div class="logo">
             <a class="simple-text text-center logo-normal">{{ __('Product Navigations') }}</a>
         </div>
@@ -60,7 +59,6 @@
                 </a>
             </li>
         </ul>
-        @endcan
         @can('User_navigations')
         <div class="logo">
             <a class="simple-text text-center logo-normal">{{ __('User Navigations') }}</a>
